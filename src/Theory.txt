@@ -1,13 +1,13 @@
 1 What are React components? Explain functional vs class components.
-Ans:- React components is the part of webpage user can create this one time and reus multiple time if they wants.
-      There Are Two types of React components.
-      Functional components:-
-        Functional Components is commenly used 
-      Class Components
+Ans:- React components are reusable pieces of UI. They let you split the UI into independent, isolated sections.
+Functional components:- Just JavaScript functions. They return JSX. Use hooks like `useState` for state.
+Class components:- Use ES6 classes, extend `React.Component`, have lifecycle methods, use `this.state` for state.
+
+Functional is now preferred, simpler, and more modern. Class is older, more verbose.
 
 2 What is the difference between state and props?
 Ans:- 
-      state:- 
+      state:- It is a Object in react it can be used stored data and using useState we can update or change state value.
 
       props:-Props is known as property, using props we can pass data one component to another components.
              Ex.
@@ -36,12 +36,33 @@ Ans:-
   Ans:- React Hooks is the 
   useState:-
      Using useState hook we can change the current state of object or variable.
+     const Demo = () => {
+     const [demo, setDemo] = useState();
+     return (
+      <div>
+      <input
+        type="text"
+        className="border p-2 m-2"
+        value={demo}
+        onChange={(e) => {
+          setDemo(e.target.value);
+        }}
+      />
+     
+     </div>
+  );
+};
+export default Demo;
+
   useEffect
   useRef
   useMemo
   useContext
 
 5 What is the difference between useEffect and useLayoutEffect?
+  Ans:-useEffect runs after the paint, so the user sees the DOM update first, then the effect runs.  
+   useLayoutEffect runs synchronously after DOM mutations but before the browser paints, so it blocks the paint until it finishes.  
+   Use useLayoutEffect only when you need to measure DOM or do visual updates before the user sees anything. Otherwise, stick with useEffect.
 
 6 What is the purpose of useMemo and useCallback hooks?
   Ans:-using useMemo and useCallback we can performing Complicated looping or heavy oprations.
