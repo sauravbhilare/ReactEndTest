@@ -1,7 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-regular-svg-icons";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const TodoList = ({ task, deleteTodo, toggleComplete, editTodo }) => {
   return (
@@ -18,16 +15,12 @@ const TodoList = ({ task, deleteTodo, toggleComplete, editTodo }) => {
         <span className="incompletedTask">Incompleted</span>
       )}
       <div>
-        <FontAwesomeIcon
-          className="edit-icon"
-          icon={faPenToSquare}
-          onClick={() => editTodo(task.id)}
-        />
-        <FontAwesomeIcon
-          className="delete-icon"
-          icon={faTrash}
-          onClick={() => deleteTodo(task.id)}
-        />
+        <button className="edit-btn" onClick={() => editTodo(task.id)}>
+          Edit
+        </button>
+        <button className="delete-btn" onClick={() => deleteTodo(task.id)}>
+          Delete
+        </button>
       </div>
     </div>
   );

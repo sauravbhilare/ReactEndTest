@@ -3,7 +3,6 @@ import ToDoForm from "./ToDoForm";
 import { v4 as uuidv4 } from "uuid";
 import EditTodoForm from "./EditTodoForm";
 import TodoList from "./TodoList";
-import { toast } from "react-toastify";
 
 const ToDoWrapper = () => {
   const [todos, setTodos] = React.useState(() => {
@@ -17,7 +16,7 @@ const ToDoWrapper = () => {
     const normalizedTask = normalizeTask(task);
 
     if (!normalizedTask) {
-      toast.info("Task cannot be empty");
+      alert("Task cannot be empty");
       return;
     }
 
@@ -26,7 +25,7 @@ const ToDoWrapper = () => {
     );
 
     if (isDuplicate) {
-      toast.info("Task already exists");
+      alert("Task already exists");
       return;
     }
 
@@ -34,43 +33,17 @@ const ToDoWrapper = () => {
       ...todos,
       { id: uuidv4(), task: task.trim(), completed: false, isEditing: false },
     ]);
-
-    toast.success("Task added successfully");
   };
 
   const deleteTodo = (id) => {
-    toast.info(
-      <div>
-        <p>Are you sure you want to delete this task?</p>
-        <button
-          onClick={() => {
-            setTodos(todos.filter((todo) => todo.id !== id));
-            toast.success("Task deleted successfully");
-          }}
-        >
-          Confirm
-        </button>
-        <button onClick={() => toast.dismiss()}>Cancel</button>
-      </div>,
-      {
-        autoClose: false,
-        closeButton: false,
-      }
-    );
+    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
   };
 
   const toggleComplete = (id) => {
     setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          const updatedTodo = { ...todo, completed: !todo.completed };
-          if (updatedTodo.completed) {
-            toast.success("Task completed! 🎉");
-          }
-          return updatedTodo;
-        }
-        return todo;
-      })
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
     );
   };
 
@@ -90,53 +63,18 @@ const ToDoWrapper = () => {
           : todo
       )
     );
-
-    toast.success("Task updated successfully");
   };
 
   const clearAllTodos = () => {
-    toast.info(
-      <div>
-        <p>Are you sure you want to clear all tasks?</p>
-        <div style={{ display: "flex", gap: "10px", marginTop: "10px" }}>
-          <button
-            style={{
-              padding: "5px 10px",
-              background: "#8e5093",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-            }}
-            onClick={() => {
-              setTodos([]);
-              toast.success("All tasks cleared successfully");
-            }}
-          >
-            Confirm
-          </button>
-          <button
-            style={{
-              padding: "5px 10px",
-              background: "#f5f5f5",
-              border: "none",
-              borderRadius: "4px",
-            }}
-            onClick={() => toast.dismiss()}
-          >
-            Cancel
-          </button>
-        </div>
-      </div>,
-      {
-        autoClose: false,
-        closeButton: false,
-      }
-    );
+    if (window.confirm("Are you sure you want to clear all tasks?")) {
+      setTodos([]);
+    }
   };
 
   React.useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
+
   return (
     <div className="TodoWrapper">
       <h1 style={{ marginTop: "20px" }}>BASIC TODO APP</h1>
@@ -167,21 +105,11 @@ const ToDoWrapper = () => {
         )}
       </div>
 
-      {/* Sticky footer */}
-      <div className="sticky-footer">
-        {todos.length > 0 && (
-          <>
-            <button className="clear-btn" onClick={clearAllTodos}>
-              Clear All
-            </button>
-            <br />
-            <span className="todo-count">
-              Total Tasks: {todos.length} | Remaining Tasks:{" "}
-              {todos.filter((todo) => !todo.completed).length}
-            </span>
-          </>
-        )}
-      </div>
+      {todos.length > 0 && (
+        <button onClick={clearAllTodos} style={{ marginTop: "20px" }}>
+          Clear All
+        </button>
+      )}
     </div>
   );
 };
