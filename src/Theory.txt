@@ -1,0 +1,41 @@
+1 What are React components? Explain functional vs class components.
+Ans:- React components is the part of webpage user can create this one time and reus multiple time if they wants.
+      There Are Two types of React components.
+      Functional components:-
+        Functional Components is mostly used 
+      Clas Components
+
+2 What is the difference between state and props?
+Ans:- 
+      state:- 
+
+      props:-Props is known as property, using props we can pass data one component to another components.
+             Ex.
+             Sending Props-
+              <Home userData="userData"/>
+             Getting Props-
+               const ToDo = ({userData}) => {
+                console.log(userData);
+                  return (
+                            <div>
+      
+                            </div>
+                         )
+                 }
+
+              export default ToDo
+
+3 Explain the concept of Virtual DOM and how React uses it.
+  Ans:- 
+
+
+4 What are React Hooks? Name a few commonly used ones and their use cases.
+  Ans:- React Hooks is the 
+  useState
+  useEffect
+  useRef
+  useMemo
+  useContext
+
+             
+
