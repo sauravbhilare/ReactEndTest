@@ -2,8 +2,8 @@
 Ans:- React components is the part of webpage user can create this one time and reus multiple time if they wants.
       There Are Two types of React components.
       Functional components:-
-        Functional Components is mostly used 
-      Clas Components
+        Functional Components is commenly used 
+      Class Components
 
 2 What is the difference between state and props?
 Ans:- 
@@ -26,16 +26,37 @@ Ans:-
               export default ToDo
 
 3 Explain the concept of Virtual DOM and how React uses it.
-  Ans:- 
+  Ans:- Virtual Dom is the Document Object Model.
+        It is Working Virtually so not optimizing Memory.
+        In React using Dom we can update Perticular component not update all web page. webpage can not fully load so improve performance and getting data fastly.
+
 
 
 4 What are React Hooks? Name a few commonly used ones and their use cases.
   Ans:- React Hooks is the 
-  useState
+  useState:-
+     Using useState hook we can change the current state of object or variable.
   useEffect
   useRef
   useMemo
   useContext
+
+5 What is the difference between useEffect and useLayoutEffect?
+
+6 What is the purpose of useMemo and useCallback hooks?
+  Ans:-using useMemo and useCallback we can performing Complicated looping or heavy oprations.
+       but in useMemo we can memorize the oprations while its running and when this opration can repeat then this gel less time of first time executing.
+       In useCallback opration can perform each time start to end so it is time cnsuming task than useMemo.
+
+7 How does React handle reconciliation and diffing?
+
+8 What are controlled vs uncontrolled components in React?
+
+9 How do you implement routing in a React application?
+  Ans:- installing react-router-dom dependancy we can implement routing in react application.
+        
+
+10 What are React’s best practices for performance optimization?
 
              
 
